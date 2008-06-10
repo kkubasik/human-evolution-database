@@ -4,31 +4,9 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /stylesheets
-  static_dir: stylesheets
-  
-- url: /templates
-  static_dir: templates
- 
-- url: /favicon.ico
-  static_files: images/favicon.ico
-  upload: images/favicon.ico
-
-- url: /map/.*
-  script: main.py
-   
-- url: /fossil/.*
-  script: main.py
-
-- url: /species/.*
-  script: main.py
-  
-- url: /submit/.*
-  script: main.py
-  login: admin
-
-- url: /
-  script: main.py
+handlers:
+- url: /static
+  static_dir: static
 
 - url: /.*
   script: main.py
