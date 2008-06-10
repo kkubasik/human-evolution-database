@@ -10,13 +10,13 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used 190 times in query history.
+# Used 2 times in query history.
 - kind: Fossil
   properties:
   - name: date
     direction: desc
 
-# Used once in query history.
+# Unused in query history -- copied from input.
 - kind: Fossil
   properties:
   - name: species
