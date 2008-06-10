@@ -11,11 +11,30 @@ from django.http import HttpResponseForbidden, HttpResponseNotFound
 from django.shortcuts import render_to_response
 import django.template
 from django.utils import simplejson
-
+import logging
 from models import Fossil
 
-
-
+class FossilForm(forms.Form):
+    title = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    slug = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    antiquity = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    species = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    field_site = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    lat = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    long = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    doi = forms.CharField(max_length=100,
+                            widget=forms.TextInput(attrs={'size': 60}))
+    
+    image = forms.ImageField()
+    
+    
 
 def user_stuff(request):
     if request.user:
@@ -53,3 +72,17 @@ def show(request,slug):
         }
     
     return render_to_response("fossil.html",template_values)
+
+def new(request):
+    if request.method == "POST":
+        logging.log(logging.WARN, "Cannot Save Data Yet")
+        return HttpResponse(content="No Response Yet")
+    login_linktext, login = user_stuff(request)
+    fossil_form = FossilForm()
+    template_values = {
+      'login': login,
+      'login_linktext': login_linktext,
+      'fossil_form': fossil_form,
+      }
+    return render_to_response('new.html',template_values)
+    
