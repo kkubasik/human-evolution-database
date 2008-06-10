@@ -1,0 +1,55 @@
+<html>
+		{% for fossil in fossils %}
+<head>
+	<title>{{ fossil.title|escape }} a {{ fossil.species|escape }} from {{ fossil.field_site|escape }}</title>
+
+<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link type="text/css" rel="stylesheet" href="/css/main.css" />
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAXKGUlmNjdDfXVrMBMqxlZhRA_LFUWYo3SLtVx4G39hBujtNPBRRJqAeRRFyEUByOW0MPBohDduCp1g"
+  type="text/javascript"></script>
+</head>
+	  <body onunload="GUnload()">
+			<h1>{{ fossil.title|escape }}</h1>
+			<div id="map" style="width: 50%; height: 300px; float: right;"></div>
+			<strong>Antiquity</strong>: {{ fossil.antiquity|escape }}<br />
+			<strong>Species</strong>: <em><a href='/species/{{ fossil.species|escape }}'>{{ fossil.species|escape }}</a></em></br />
+			<strong>Site</strong>: {{ fossil.field_site|escape }}<br />
+			<strong>Primary Publication</strong>: <a href="http://dx.doi.org/{{ fossil.doi|escape }}">Link</a><br />
+	
+	    <script type="text/javascript">
+	    //<![CDATA[
+
+	    if (GBrowserIsCompatible()) { 
+
+	      function createMarker(point,html) {
+	        var marker = new GMarker(point);
+	        GEvent.addListener(marker, "click", function() {
+	          marker.openInfoWindowHtml(html);
+	        });
+	        return marker;
+	      }
+
+	      var map = new GMap2(document.getElementById("map"));
+	    map.setCenter(new GLatLng({{ fossil.lat|escape }},{{ fossil.lng|escape }}), 3);
+	 
+	      var point = new GLatLng({{ fossil.lat|escape }},{{ fossil.lng|escape }});
+	      var marker = createMarker(point,'<div style="width:300px"><a href="../fossil/{{ fossil.title|escape }}">{{ fossil.title|escape }}</a>, a <em>{{ fossil.species|escape }}</em> specimen from {{ fossil.field_site|escape }}.</div>')
+	      map.addOverlay(marker);
+
+	    }
+
+	    else {
+	      alert("Sorry, the Google Maps API is not compatible with this browser");
+	    }
+
+	    //]]>
+	    </script>	
+		
+		
+		
+		
+    	{% endfor %}
+		<a href="{{ login }}">{{ login_linktext }}</a> | <a href="/">Home</a> | <a href="/submit">Submit</a> | <a href="/map">Map</a>
+	</body>
+</html>

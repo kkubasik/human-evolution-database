@@ -1,0 +1,25 @@
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <title>Hominin.net - Submission Form</title>
+</head>
+  <body>
+	<h1>Hominin.net - Submission Form</h1>
+	<div>
+	    <form action="/submitted" method="post">
+			<table>
+	      <tr><td align="right"><label>Title: </td><td><input type="text" name="title"></label></td></tr>
+	      <tr><td align="right"><label>Species: </td><td><input type="text" name="species"></label></td></tr>
+	      <tr><td align="right"><label>Antiquity: </td><td><input type="text" name="antiquity"></label></td></tr>
+	      <tr><td align="right"><label>Field Site: </td><td><input type="text" name="field_site"></label></td></tr>
+	      <tr><td align="right"><label>Latitude: </td><td><input type="text" name="lat"></label></td></tr>
+	      <tr><td align="right"><label>Longitude: </td><td><input type="text" name="lng"></label></td></tr
+	      <tr><td align="right"><label>DOI: </td><td><input type="text" name="doi"></label></td></tr>
+	      <tr><td></td><td><input type="submit" value="Submit this fossil"></td></tr>
+			</table>
+	    </form>
+	</div>
+    <a href="{{ login }}">{{ login_linktext }}</a> | <a href="/">Home</a> | Submit | <a href="/map">Map</a>
+  </body>
+</html>

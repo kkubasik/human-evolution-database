@@ -1,0 +1,49 @@
+<html>
+<head>
+	<title>Hominin.net - A Human Evolution Fossil Database</title>
+
+<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link type="text/css" rel="stylesheet" href="/css/main.css" />
+	    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAXKGUlmNjdDfXVrMBMqxlZhRA_LFUWYo3SLtVx4G39hBujtNPBRRJqAeRRFyEUByOW0MPBohDduCp1g"
+	      type="text/javascript"></script>
+  </head>
+  <body onunload="GUnload()">
+    <div id="map" style="width: 100%; height: 600px"></div>
+    <script type="text/javascript">
+    //<![CDATA[
+    
+    if (GBrowserIsCompatible()) { 
+
+      function createMarker(point,html) {
+        var marker = new GMarker(point);
+        GEvent.addListener(marker, "click", function() {
+          marker.openInfoWindowHtml(html);
+        });
+        return marker;
+      }
+
+      var map = new GMap2(document.getElementById("map"));
+      map.addControl(new GLargeMapControl());
+      map.addControl(new GMapTypeControl());
+    map.setCenter(new GLatLng(14.885838, 33.195312), 3);
+  		{% for fossil in fossils %}  
+      var point = new GLatLng({{ fossil.lat|escape }},{{ fossil.lng|escape }});
+      var marker = createMarker(point,'<div style="width:300px"><a href="/fossil/{{ fossil.title|escape }}">{{ fossil.title|escape }}</a>, a <em>{{ fossil.species|escape }}</em> specimen from {{ fossil.field_site|escape }}.</div>')
+      map.addOverlay(marker);     	{% endfor %}
+
+    }
+
+    else {
+      alert("Sorry, the Google Maps API is not compatible with this browser");
+    }
+
+    //]]>
+    </script>
+		<a href="{{ login }}">{{ login_linktext }}</a> | <a href="/">Home</a> | <a href="/submit">Submit</a> | Map
+  </body>
+
+</html>
+
+
+

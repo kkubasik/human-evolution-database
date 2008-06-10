@@ -1,0 +1,19 @@
+<html>
+{% for fossil in fossils %}
+<head>
+	{% if fossil.species %}
+	<title>{{ fossil.species|escape }}</title>
+<link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link type="text/css" rel="stylesheet" href="/css/main.css" />
+</head>
+	<body>
+		<h1><em>{{ fossil.species|escape }}</em></h1>{% endif %}{% endfor %}
+		<ol>{% for fossil in fossils %}
+		<li>
+			<strong><a href="/fossil/{{ fossil.title|escape }}">{{ fossil.title|escape }}</a></strong>, is {{ fossil.antiquity|escape }} and recognized as a <a href="/species/{{ fossil.species|escape }}"><em>{{ fossil.species|escape }}</em></a> specimen from <a href="http://maps.google.com/maps?f=q&hl=en&geocode=&q={{ fossil.lat|escape }},{{ fossil.lng|escape }}&ie=UTF8&ll=11.049038,40.297852&spn=5.669464,11.425781&z=7&iwloc=addr">{{ fossil.field_site|escape }}</a>. To learn more about this specimen, please <a href="http://dx.doi.org/{{ fossil.doi|escape }}">read the primary publication</a>.
+		</li>
+    	{% endfor %}</ol>
+		<a href="{{ login }}">{{ login_linktext }}</a> | <a href="/">Home</a> | <a href="/submit">Submit</a> | <a href="/map">Map</a>
+	</body>
+</html>
