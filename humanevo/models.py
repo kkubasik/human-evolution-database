@@ -11,6 +11,7 @@ class Fossil(search.SearchableModel):
     author = db.UserProperty()
     date = db.DateTimeProperty(auto_now_add=True)
     title = db.StringProperty()
+    slug = db.StringProperty()
     antiquity = db.StringProperty()
     species = db.StringProperty()
     field_site = db.StringProperty()
@@ -19,6 +20,8 @@ class Fossil(search.SearchableModel):
     doi_title= db.StringProperty()
     doi_authors = db.StringListProperty()
     doi_abstract = db.TextProperty()
+    image_path = db.StringProperty()
+    
     
     
     def populate_doi(self,query, email='simon@simon.net.nz', tool='SimonsPythonQuery', database='pubmed'):
