@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock title%}
+
+{% block primaryContent %}	
+
+	Enter a new fossil here:
+	
+	<form method="post" action="">
+	<dl>
+	{% for field in form %}
+	    <dt>{{ field.label_tag }}</dt>
+	    <dd>{{ field }}</dd>
+ 	   {% if field.help_text %}<dd>{{ field.help_text }}</dd>{% endif %}
+   	 {% if field.errors %}<dd class="myerrors">{{ field.errors }}</dd>{% endif %}
+	{% endfor %}
+	</dl>
+	<input type="submit" />
+	</form>
+
+				
+{% endblock primaryContent %}	

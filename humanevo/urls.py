@@ -4,9 +4,10 @@ urlpatterns = patterns(
     'humanevo.views',
     (r'^$', 'index'),
     (r'^all$', 'all'),
+    (r'^contact', 'contact'),
 #===============================================================================
 #    (r'^mine$', 'mine'),
-    (r'^new$', 'new'),
+    (r'^new', 'new'),
 #    (r'^upload$', 'upload'),
     (r'^(.*)$', 'show'),
     (r'^(.*)/show$', 'show'),
@@ -31,4 +32,5 @@ urlpatterns = patterns(
 #    (r'^branch_delete/(\d+)$', 'branch_delete'),
 #    (r'^settings$', 'settings'),
 #===============================================================================
+
     )

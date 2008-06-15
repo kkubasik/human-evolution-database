@@ -6,6 +6,10 @@ from google.appengine.api import users, urlfetch
 from google.appengine.ext import db, search
 import urllib
 from xml.dom import minidom
+from django import newforms as forms
+from django.newforms.util import ErrorList
+
+
 
 class Fossil(search.SearchableModel):
     author = db.UserProperty()
@@ -83,6 +87,6 @@ class Fossil(search.SearchableModel):
         self.doi_authors = authorlist
         self.save()
         
-
         
-       
+
+

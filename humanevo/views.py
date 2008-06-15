@@ -12,7 +12,7 @@ from django.shortcuts import render_to_response
 import django.template
 from django.utils import simplejson
 import logging
-from models import Fossil
+from models import Fossil, ContactForm
 
 class FossilForm(forms.Form):
     title = forms.CharField(max_length=100,
@@ -34,7 +34,11 @@ class FossilForm(forms.Form):
     
     image = forms.ImageField()
     
-    
+class ContactForm(forms.Form):
+    sender = forms.EmailField()
+    subject = forms.CharField(max_length=100)
+    message = forms.CharField()
+    cc_myself = forms.BooleanField(required=False)
 
 def user_stuff(request):
     if request.user:
@@ -73,16 +77,40 @@ def show(request,slug):
     
     return render_to_response("fossil.html",template_values)
 
-def new(request):
-    if request.method == "POST":
-        logging.log(logging.WARN, "Cannot Save Data Yet")
-        return HttpResponse(content="No Response Yet")
-    login_linktext, login = user_stuff(request)
-    fossil_form = FossilForm()
-    template_values = {
-      'login': login,
-      'login_linktext': login_linktext,
-      'fossil_form': fossil_form,
-      }
-    return render_to_response('new.html',template_values)
+#def new(request):
+#    if request.method == "POST":
+#        logging.log(logging.WARN, "Cannot Save Data Yet")
+#        return HttpResponse(content="No Response Yet")
+#    login_linktext, login = user_stuff(request)
+#    fossil_form = FossilForm()
+#    template_values = {
+#      'login': login,
+#      'login_linktext': login_linktext,
+#      'fossil_form': fossil_form,
+#      }
+#    return render_to_response('new.html',template_values)
     
+    
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            # Do form processing here...
+            return HttpResponseRedirect('/url/on_success/')
+    else:
+        form = ContactForm()
+
+    return render_to_response('contact.html', {'form': form})
+
+
+def new(request):
+    if request.method == 'POST':
+        form = FossilForm(request.POST)
+        if form.is_valid():
+            # Do form processing here...
+            return HttpResponseRedirect('/url/on_success/')
+    else:
+        form = FossilForm()
+
+    return render_to_response('new.html', {'form': form})
+
