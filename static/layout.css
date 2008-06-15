@@ -82,6 +82,7 @@ html>body #wrapper {
 	margin: 0px;
 	padding: 0px;
 	font-size: 30px;
+	text-transform: none;
 }
 
 #header h2 {
@@ -105,6 +106,7 @@ html>body #wrapper {
 	padding: 11px 0px 0px 7px;
 	background: transparent url(images/homepage02.gif) no-repeat left top;
 	list-style: none;
+	
 }
 
 #main-menu li {
@@ -124,6 +126,31 @@ html>body #wrapper {
 }
 
 #main-menu ul {
+	list-style:none;
+}
+
+
+#userStatus ul
+{ 
+	display: inline;
+	text-align: right;
+	float: right;
+	margin-right: 0px;
+	padding-right: 0px;
+}
+
+#userStatus li
+{ 
+	display: inline;
+	padding-top: 6px;
+	margin-right: 0px;
+	padding-right: 0px;
+}
+
+#userStatus a
+{ 
+	display: inline;
+	float: right;
 }
 
 /** CONTENT */
