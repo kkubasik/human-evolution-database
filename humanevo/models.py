@@ -2,7 +2,7 @@
 import logging
 
 # AppEngine imports
-from google.appengine.api import users, urlfetch
+from google.appengine.api import users, urlfetch, images
 from google.appengine.ext import db, search
 import urllib
 from xml.dom import minidom
@@ -24,9 +24,12 @@ class Fossil(search.SearchableModel):
     doi_title= db.StringProperty()
     doi_authors = db.StringListProperty()
     doi_abstract = db.TextProperty()
-    image_path = db.StringProperty()
+    image = db.BlobProperty()
     
-    
+    def thumb(self):
+        i = images.Image(image)
+        i.resize(150, 150)
+        return i.execute_transforms()
     
     def populate_doi(self,query, email='simon@simon.net.nz', tool='SimonsPythonQuery', database='pubmed'):
         params = {

@@ -3,7 +3,7 @@ from google.appengine.api import mail
 from google.appengine.api import users
 from google.appengine.api import urlfetch
 from google.appengine.ext import db
-
+from google.appengine.api import images
 
 from django import newforms as forms
 from django.http import HttpResponse, HttpResponseRedirect
@@ -12,7 +12,8 @@ from django.shortcuts import render_to_response
 import django.template
 from django.utils import simplejson
 import logging
-from models import Fossil, ContactForm
+from models import Fossil
+
 
 class FossilForm(forms.Form):
     title = forms.CharField(max_length=100,
@@ -32,7 +33,7 @@ class FossilForm(forms.Form):
     doi = forms.CharField(max_length=100,
                             widget=forms.TextInput(attrs={'size': 60}))
     
-    image = forms.ImageField()
+    image = forms.FileField()
     
 class ContactForm(forms.Form):
     sender = forms.EmailField()
@@ -105,10 +106,23 @@ def contact(request):
 
 def new(request):
     if request.method == 'POST':
-        form = FossilForm(request.POST)
+        form = FossilForm(request.POST, request.FILES)
         if form.is_valid():
+            logging.log(logging.DEBUG, form.cleaned_data)
+            f= Fossil()
+            f.author = request.user
+            f.title = form.cleaned_data['title']
+            f.slug = form.cleaned_data['slug']
+            f.species = form.cleaned_data['species']
+            f.antiquity = form.cleaned_data['antiquity']
+            f.doi = form.cleaned_data['doi']
+            f.loc = db.GeoPt(lat=form.cleaned_data['lat'],lon=form.cleaned_data['long'])
+            f.field_site = form.cleaned_data['field_site']
+            i = images.Image(form.cleaned_data['image'].content)
+            f.image = i.execute_transforms()
+            f.populate_doi(f.doi)
             # Do form processing here...
-            return HttpResponseRedirect('/url/on_success/')
+            return HttpResponseRedirect('/')
     else:
         form = FossilForm()
 

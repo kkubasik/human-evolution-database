@@ -13,6 +13,8 @@ urlpatterns = patterns(
     (r'^(.*)/show$', 'show'),
 #    (r'^(\d+)/add$', 'add'),
     (r'^(.*)/edit$', 'edit'),
+    (r'^(.*)/image$', 'edit'),
+    (r'^(.*)/thumb', 'edit'),
 #    (r'^(\d+)/delete$', 'delete'),
 #    (r'^(\d+)/publish$', 'publish'),
 #    (r'^(\d+)/download/(\d+)', 'download'),
