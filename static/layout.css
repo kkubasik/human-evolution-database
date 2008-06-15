@@ -1,0 +1,170 @@
+/** BASIC */
+
+html, body {
+	height: 90%;
+}
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background: #273840 url(images/homepage01.jpg) repeat-x left top;
+	font-size: 11px;
+	text-align: justify;
+	color: #273840;
+}
+
+h1 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 14px;
+	text-transform: uppercase;
+}
+
+h2.bigger {
+	font-size: 18px;
+	text-transform: uppercase;
+}
+
+h3 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 11px;
+	text-transform: uppercase;
+}
+
+p, ol, ul {
+	margin-top: 0px;
+}
+
+.img1 {
+	float: left;
+	margin: 4px 15px 0px 0px;
+	border: 2px solid #608B9F;
+}
+
+.hr1 {
+	clear: both;560
+	margin-top: 10px 0px 10px 0px;
+	border: 1px dashed #608B9F;
+}
+
+.hr1 hr {
+	display: none;
+}
+
+/** WRAPPER */
+
+#wrapper {
+	width: 780px;
+	height: 100%;
+	min-height: 100%;
+	
+	margin: 25px auto 25px auto;
+	padding: 30px;
+	background-color: #FFFFFF;
+}
+
+html>body #wrapper {
+	height: auto;
+}
+
+/** HEADER */
+
+#header {
+	margin-bottom: 20px;
+}
+
+#header h1 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 30px;
+}
+
+#header h2 {
+	margin: 0px;
+	padding: 0px;
+	font-size: 12px;
+	text-transform: lowercase;
+}
+
+/** MAIN-MENU */
+
+#main-menu {
+	margin: 0px 0px 10px 0px;
+	background: #4F7383 url(images/homepage06.gif) no-repeat right top;
+	text-transform: uppercase;
+}
+
+#main-menu ul {
+	height: 28px;
+	margin: 0px;
+	padding: 11px 0px 0px 7px;
+	background: transparent url(images/homepage02.gif) no-repeat left top;
+	list-style: none;
+}
+
+#main-menu li {
+	display: inline;
+}
+
+#main-menu a {
+	padding: 0px 8px 0px 15px;
+	background: transparent url(images/homepage03.gif) no-repeat left center;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFFFFF;
+}
+
+#main-menu .first a {
+	background: none;
+}
+
+#main-menu ul {
+}
+
+/** CONTENT */
+
+#content {
+}
+
+#left {
+	float: left;
+	width: 560px;
+}
+
+#right {
+	float: right;
+	width: 180px;
+	margin: 0px 15px 0px 15px;
+}
+
+/** FOOTER */
+
+#footer {
+	clear: both;
+	padding: 20px 0px 0px 0px;
+}
+
+#footer ul {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+	text-align: center;
+}
+
+#footer li {
+	display: inline;
+}
+
+#footer a {
+	padding: 0px 10px;
+}
+
+#footer p {
+	text-align: center;
+	font-size: 9px;
+}
